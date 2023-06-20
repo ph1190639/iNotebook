@@ -2,7 +2,7 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000"
+  const host = "http://localhost:9000"
   const notesInitial = []
   const [notes, setNotes] = useState(notesInitial)
 
@@ -13,7 +13,7 @@ const NoteState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzMWRjNWUzZTQwMzdjZDQ3MzRhMDY2In0sImlhdCI6MTYzMDY2OTU5Nn0.hJS0hx6I7ROugkqjL2CjrJuefA3pJi-IU5yGUbRHI4Q"
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5MWNiOWYxYWJmN2QwNGEyMzIzZjlmIn0sImlhdCI6MTY4NzI3ODM2NX0.mA5M2EZVPzsFEj4BUqoswrPNaQYSZlCnE8BQuK2mVY4"
       }
     });
     const json = await response.json() 
@@ -24,17 +24,19 @@ const NoteState = (props) => {
   const addNote = async (title, description, tag) => {
     // TODO: API Call
     // API Call 
+    console.log("data is here ")
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzMWRjNWUzZTQwMzdjZDQ3MzRhMDY2In0sImlhdCI6MTYzMDY2OTU5Nn0.hJS0hx6I7ROugkqjL2CjrJuefA3pJi-IU5yGUbRHI4Q"
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5MWNiOWYxYWJmN2QwNGEyMzIzZjlmIn0sImlhdCI6MTY4NzI3ODM2NX0.mA5M2EZVPzsFEj4BUqoswrPNaQYSZlCnE8BQuK2mVY4"
       },
       body: JSON.stringify({title, description, tag})
     });
+    console.log("send cqll")
 
     const note = await response.json();
-    setNotes(notes.concat(note))
+    // setNotes(notes.concat(note))
   }
 
   // Delete a Note
